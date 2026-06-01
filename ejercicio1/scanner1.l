@@ -3,25 +3,23 @@
 
 %%
 
- /* ── Reglas ya implementadas ────────────────────────── */
+/* Constante hexadecimal */
+0[xX][0-9A-Fa-f]+ { printf("constante hexadecimal: %s\n", yytext); }
 
- /* Constante octal: 0 seguido de dígitos octales (o solo 0) */
-0[0-7]*         { printf("constante octal: %s\n", yytext); }
+/* Constante octal */
+0[0-7]*           { printf("constante octal: %s\n", yytext); }
 
- /* Ignorar espacios, tabs y saltos de línea */
-[ \t\n]         { }
+/* Constante decimal */
+[1-9][0-9]*       { printf("constante decimal: %s\n", yytext); }
 
- /* ── Reglas agregadas ───────────────────────────────── */
+/* Identificador */
+[a-zA-Z_][a-zA-Z0-9_]* { printf("identificador: %s\n", yytext); }
 
-[1-9][0-9]*     { printf("constante decimal: %s\n", yytext); }
+/* Ignorar espacios */
+[ \t\n]           { }
 
-0[xX][0-9A-Fa-f]+
-                { printf("constante hexadecimal: %s\n", yytext); }
-
-[a-zA-Z_][a-zA-Z0-9_]*
-                { printf("identificador: %s\n", yytext); }
-
-.               { printf("caracter no reconocido: %s\n", yytext); }
+/* Comodín */
+.                 { printf("caracter no reconocido: %s\n", yytext); }
 
 %%
 
